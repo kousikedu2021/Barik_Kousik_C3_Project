@@ -65,5 +65,17 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  
+    @Test
+    public void total_order_cost_should_match_the_sum_of_items_cost_chosen_from_the_menu(){
+        HashMap<String,Integer> itemChosen = new HashMap<>();
+        itemChosen.put("Vegetable lasagne",269);
+        Collection<Integer> itemChosenCostValue = itemChosen.values();
+        Set<String> selectedItemsName = itemChosen.keySet();
+        List<String> listSelectedItemsName = new ArrayList<>(selectedItemsName);
+        int expectedTotalOrderCost =0 ;
+        for(Integer i : itemChosenCostValue){
+            expectedTotalOrderCost+=i;
+        }
+        assertEquals(expectedTotalOrderCost,restaurant.getTotalOrder(listSelectedItemsName));
+    }
 }
